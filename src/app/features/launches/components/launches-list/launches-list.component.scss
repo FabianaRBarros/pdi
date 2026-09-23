@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .search-field {
+    width: 100%;
+  }
+
+  .launches-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+
+    @media (max-width: 375px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
