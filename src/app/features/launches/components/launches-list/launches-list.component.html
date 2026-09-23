@@ -1,0 +1,22 @@
+<form [formGroup]="searchForm">
+  <mat-form-field appearance="outline" class="search-field">
+    <mat-label>Search for a mission...</mat-label>
+    <input
+      matInput
+      type="text"
+      formControlName="term"
+      placeholder="Ex. Crew-1"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>
+
+<div class="launches-grid"
+  infinite-scroll
+  [infiniteScrollThrottle]="0"
+  [infiniteScrollDistance]="1"
+  (scrolled)="loadNextPage()">
+  @for (launch of filteredLaunches(); track launch.flightNumber) {
+    <app-launch-card class="launch-card" [launch]="launch"></app-launch-card>
+  }
+</div>

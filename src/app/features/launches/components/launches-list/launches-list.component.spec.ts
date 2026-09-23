@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LaunchesListComponent } from './launches-list';
+import { LaunchesListComponent } from './launches-list.component';
 
 describe('LaunchesList', () => {
   let component: LaunchesListComponent;
