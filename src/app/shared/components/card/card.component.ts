@@ -1,5 +1,5 @@
-import { NgOptimizedImage } from '@angular/common'
-import { Component, computed, input, Signal } from '@angular/core'
+import { NgOptimizedImage, NgTemplateOutlet } from '@angular/common'
+import { Component, computed, input, output, Signal } from '@angular/core'
 import {
   MatCard,
   MatCardContent,
@@ -10,10 +10,10 @@ import {
   MatCardTitleGroup,
 } from '@angular/material/card'
 
-const IMAGE_PLACEHOLDER = '/assets/images/image-placeholder.png';
+const IMAGE_PLACEHOLDER = '/assets/images/image-placeholder.png'
 
 @Component({
-  selector: "app-card",
+  selector: 'app-card',
   imports: [
     MatCard,
     MatCardContent,
@@ -23,24 +23,34 @@ const IMAGE_PLACEHOLDER = '/assets/images/image-placeholder.png';
     MatCardTitleGroup,
     NgOptimizedImage,
     MatCardImage,
+    NgTemplateOutlet,
   ],
-  templateUrl: "./card.component.html",
-  styleUrl: "./card.component.scss",
+  templateUrl: './card.component.html',
+  styleUrl: './card.component.scss',
 })
 export class CardComponent {
-  title = input.required<string>();
-  subtitle = input<string>();
-  imageUrl = input<string>();
-  fallbackImageUrl = input<string>(IMAGE_PLACEHOLDER);
-  imageAlt = input<string>();
+  title = input.required<string>()
+  subtitle = input<string>()
+  imageUrl = input<string>()
+  fallbackImageUrl = input<string>(IMAGE_PLACEHOLDER)
+  imageAlt = input<string>()
+  clickable = input<boolean>(false)
+
+  onClickCard = output()
 
   localImageUrl: Signal<string> = computed(() => {
-    const imageUrl = this.imageUrl() ?? '';
-    return imageUrl !== '' ? imageUrl : this.fallbackImageUrl();
-  });
+    const imageUrl = this.imageUrl() ?? ''
+    return imageUrl !== '' ? imageUrl : this.fallbackImageUrl()
+  })
 
   onImgError(event: Event) {
-    const element = event.target as HTMLImageElement;
-    element.src = IMAGE_PLACEHOLDER;
+    const element = event.target as HTMLImageElement
+    element.src = IMAGE_PLACEHOLDER
+  }
+
+  protected handleCardClick() {
+    if (this.clickable()) {
+      this.onClickCard.emit()
+    }
   }
 }

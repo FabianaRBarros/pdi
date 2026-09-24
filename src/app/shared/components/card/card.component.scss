@@ -3,6 +3,14 @@
 :host {
   display: block;
 
+  .card-wrapper-btn {
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
   .card {
     border: 1px solid #bdc4cf;
     gap: 1.5rem;

@@ -1,4 +1,14 @@
-<mat-card class="card">
+@if (clickable()) {
+  <button class="card-wrapper-btn"
+    (click)="handleCardClick()">
+    <ng-container [ngTemplateOutlet]="card"></ng-container>
+  </button>
+} @else {
+  <ng-container [ngTemplateOutlet]="card"></ng-container>
+}
+
+<ng-template #card>
+  <mat-card class="card">
     @if (localImageUrl()) {
       <mat-card-header class="card-header">
         <mat-card-title-group>
@@ -26,7 +36,8 @@
       </mat-card-header>
     }
 
-  <mat-card-content class="card-content">
-    <ng-content select="[card-content]"></ng-content>
-  </mat-card-content>
-</mat-card>
+    <mat-card-content class="card-content">
+      <ng-content select="[card-content]"></ng-content>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

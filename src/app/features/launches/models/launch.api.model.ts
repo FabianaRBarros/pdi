@@ -146,8 +146,8 @@ export interface LaunchTimelineAPI {
   first_stage_boostback_burn: number;
   first_stage_entry_burn: number;
   first_stage_landing: number;
-  "seco-1": number;
+  'seco-1': number;
   second_stage_restart: number;
-  "seco-2": number;
+  'seco-2': number;
   payload_deploy: number;
 }

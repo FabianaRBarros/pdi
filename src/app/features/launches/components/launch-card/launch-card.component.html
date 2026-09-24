@@ -3,10 +3,13 @@
   [subtitle]="'Flight n° ' + launch().flightNumber"
   [imageUrl]="launch().imageUrl ?? ''"
   [fallbackImageUrl]="launch().imageFallbackUrl"
-  imageAlt="Mission's patch">
+  imageAlt="Mission's patch"
+  [clickable]="true"
+  (onClickCard)="goToDetails()">
   <ng-container card-content>
     <p class="date-text">
-      <app-icon class="date-icon" iconName="calendar_today"></app-icon>
+      <app-icon class="date-icon"
+        iconName="calendar_today"></app-icon>
       {{ launch().launchDate | date:'dd/MM/yyyy' }}
     </p>
 

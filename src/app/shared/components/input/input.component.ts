@@ -5,7 +5,7 @@ import { MatFormField, MatInput, MatLabel, MatPrefix } from '@angular/material/i
 
 // TODO: In the future add validators
 @Component({
-  selector: "app-input",
+  selector: 'app-input',
   imports: [
     FormsModule,
     MatFormField,
@@ -20,42 +20,43 @@ import { MatFormField, MatInput, MatLabel, MatPrefix } from '@angular/material/i
       provide: NG_VALUE_ACCESSOR,
       multi: true,
       useExisting: forwardRef(() => InputComponent),
-    }
+    },
   ],
-  templateUrl: "./input.component.html",
-  styleUrl: "./input.component.scss",
+  templateUrl: './input.component.html',
+  styleUrl: './input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputComponent implements ControlValueAccessor {
-  inputType = input('text');
-  label = input.required();
-  placeholder = input('');
-  disabled = input<boolean>(false);
+  inputType = input('text')
+  label = input.required()
+  placeholder = input('')
+  disabled = input<boolean>(false)
 
-  protected localDisabled = linkedSignal(this.disabled);
-  protected localValue = signal('');
+  protected localDisabled = linkedSignal(this.disabled)
+  protected localValue = signal('')
 
-  protected onChange = (value: string) => {}
-  protected onTouched = () => {}
-
+  protected onChange = (value: string) => {
+  }
+  protected onTouched = () => {
+  }
 
   onInputChange(value: string) {
     this.onChange?.(value)
   }
 
   writeValue(value: string): void {
-    this.localValue.set(value);
+    this.localValue.set(value)
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.onChange = fn
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+    this.onTouched = fn
   }
 
   setDisabledState?(isDisabled: boolean): void {
-    this.localDisabled.set(isDisabled);
+    this.localDisabled.set(isDisabled)
   }
 }
