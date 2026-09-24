@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { LaunchesListComponent } from './components/launches-list/launches-list';
+import { LaunchesListContainer } from './containers/launches-list/launches-list.container'
 
 export const routes: Routes = [
-      { path: "", component: LaunchesListComponent, pathMatch: "full" },
+      { path: "", component: LaunchesListContainer, pathMatch: "full" },
 ];
