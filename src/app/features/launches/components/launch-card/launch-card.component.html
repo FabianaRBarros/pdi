@@ -1,7 +1,8 @@
 <app-card
   [title]="launch().missionName"
   [subtitle]="'Flight n° ' + launch().flightNumber"
-  [imageUrl]="launch().imageUrl"
+  [imageUrl]="launch().imageUrl ?? ''"
+  [fallbackImageUrl]="launch().imageFallbackUrl"
   imageAlt="Mission's patch">
   <ng-container card-content>
     <p class="date-text">

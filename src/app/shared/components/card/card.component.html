@@ -2,13 +2,15 @@
     @if (localImageUrl()) {
       <mat-card-header class="card-header">
         <mat-card-title-group>
-          <img
-            matCardImage
-            class="card-image"
-            [ngSrc]="localImageUrl()"
-            [alt]="imageAlt()"
-            height="80"
-            width="80">
+          <div class="card-image-wrapper">
+            <img
+              matCardImage
+              fill
+              class="card-image"
+              [ngSrc]="localImageUrl()"
+              [alt]="imageAlt()"
+              (error)="onImgError($event)">
+          </div>
           <mat-card-title>{{ title() }}</mat-card-title>
           @if (!!subtitle()) {
             <mat-card-subtitle>{{ subtitle() }}</mat-card-subtitle>

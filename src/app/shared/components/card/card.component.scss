@@ -14,7 +14,10 @@
     }
 
     .card-header {
-      .card-image {
+      .card-image-wrapper {
+        position: relative;
+        min-height: 80px;
+        min-width: 80px;
         border-radius: 4px;
         border: 1px solid #bdc4cf;
       }
