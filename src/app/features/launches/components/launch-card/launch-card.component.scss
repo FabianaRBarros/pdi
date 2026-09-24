@@ -1,0 +1,16 @@
+:host {
+  display: block;
+
+  .date-text {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    gap: 8px;
+    color: #64748b;
+    font-size: 14px;
+
+    .date-icon {
+      --icon-custom-color: #64748b;
+    }
+  }
+}
