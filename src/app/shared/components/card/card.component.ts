@@ -10,6 +10,8 @@ import {
   MatCardTitleGroup,
 } from '@angular/material/card'
 
+const IMAGE_PLACEHOLDER = '/assets/images/image-placeholder.png';
+
 @Component({
   selector: "app-card",
   imports: [
@@ -29,7 +31,16 @@ export class CardComponent {
   title = input.required<string>();
   subtitle = input<string>();
   imageUrl = input<string>();
+  fallbackImageUrl = input<string>(IMAGE_PLACEHOLDER);
   imageAlt = input<string>();
 
-  localImageUrl: Signal<string> = computed(() => this.imageUrl() ??"");
+  localImageUrl: Signal<string> = computed(() => {
+    const imageUrl = this.imageUrl() ?? '';
+    return imageUrl !== '' ? imageUrl : this.fallbackImageUrl();
+  });
+
+  onImgError(event: Event) {
+    const element = event.target as HTMLImageElement;
+    element.src = IMAGE_PLACEHOLDER;
+  }
 }
