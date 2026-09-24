@@ -10,12 +10,13 @@ import { LoadingSkeletonComponent } from '../../../../shared/components/loading-
 import { Launch } from '../../models/launch.model'
 
 import { LaunchSearchStore } from '../../store/launches-list/launches-list.store'
+import { LaunchesListStoreService } from '../../store/launches-list/launches-list.store.service'
 import { LaunchCardComponent } from '../launch-card/launch-card.component'
 
 @Component({
   selector: 'app-launches-list',
   imports: [CommonModule, LaunchCardComponent, ReactiveFormsModule, InfiniteScrollDirective, InputComponent, LoadingSkeletonComponent, EmptyStateComponent],
-  providers: [LaunchSearchStore],
+  providers: [LaunchSearchStore, LaunchesListStoreService],
   templateUrl: './launches-list.component.html',
   styleUrl: "./launches-list.component.scss",
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -53,7 +54,7 @@ export class LaunchesListComponent implements OnInit {
   }
 
   protected loadNextPage() {
-    if (!this.launchesStore.filter().isLastPage) {
+    if (!this.launchesStore.isLastPage()) {
       this.launchesStore.getNextPage();
     }
   }
