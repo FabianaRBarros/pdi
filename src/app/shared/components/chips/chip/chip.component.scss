@@ -1,0 +1,32 @@
+@use '@angular/material' as mat;
+
+:host {
+  .chip {
+    @include mat.chips-overrides((
+      label-text-size: 12px,
+      container-height: 24px,
+    ));
+
+    &.success {
+      @include mat.chips-overrides((
+        outline-color: #1e7e34,
+        label-text-color: #1e7e34,
+        elevated-container-color: #e2fbe8,
+        elevated-selected-container-color: #95cfa3,
+        focus-state-layer-color: #95cfa3,
+        hover-state-layer-color: #95cfa3,
+      ));
+    }
+
+    &.error {
+      @include mat.chips-overrides((
+        outline-color: #c82333,
+        label-text-color: #c82333,
+        elevated-container-color: #fde8e8,
+        elevated-selected-container-color: #e36868,
+        focus-state-layer-color: #e36868,
+        hover-state-layer-color: #e36868,
+      ));
+    }
+  }
+}
