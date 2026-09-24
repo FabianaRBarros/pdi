@@ -1,14 +1,9 @@
 <form [formGroup]="searchForm">
-  <mat-form-field appearance="outline" class="search-field">
-    <mat-label>Search for a mission...</mat-label>
-    <input
-      matInput
-      type="text"
-      formControlName="term"
-      placeholder="Ex. Crew-1"
-    />
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
+  <app-input class="search-field"
+    label="Search for a mission..."
+    inputType="text"
+    placeholder="Ex. Crew-1"
+    formControlName="term"></app-input>
 </form>
 
 <div class="launches-grid"

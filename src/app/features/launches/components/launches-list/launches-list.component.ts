@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common'
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, Signal } from '@angular/core'
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
-import { MatIcon } from '@angular/material/icon'
-import { MatFormField, MatInput, MatLabel } from '@angular/material/input'
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll'
 import { debounceTime, distinctUntilChanged } from 'rxjs'
+import { InputComponent } from '../../../../shared/components/input/input.component'
+import { Launch } from '../../models/launch.model'
 
 import { LaunchSearchStore } from '../../store/launches-list/launches-list.store'
 import { LaunchCardComponent } from '../launch-card/launch-card.component'
 
 @Component({
   selector: 'app-launches-list',
-  imports: [CommonModule, LaunchCardComponent, ReactiveFormsModule, MatIcon, MatFormField, MatInput, MatLabel, InfiniteScrollDirective],
+  imports: [CommonModule, LaunchCardComponent, ReactiveFormsModule, InfiniteScrollDirective, InputComponent],
   providers: [LaunchSearchStore],
   templateUrl: './launches-list.component.html',
   styleUrl: "./launches-list.component.scss",
@@ -21,7 +21,7 @@ import { LaunchCardComponent } from '../launch-card/launch-card.component'
 export class LaunchesListComponent implements OnInit {
   readonly launchesStore = inject(LaunchSearchStore);
 
-  filteredLaunches = this.launchesStore.filteredLaunches;
+  filteredLaunches: Signal<Launch[]> = this.launchesStore.filteredLaunches;
   searchForm = new FormGroup({
     term: new FormControl(''),
   })
