@@ -6,11 +6,11 @@
     align-items: center;
     margin: 0;
     gap: 8px;
-    color: #64748b;
+    color: var(--mat-sys-on-surface-variant);
     font-size: 14px;
 
     .date-icon {
-      --icon-custom-color: #64748b;
+      --icon-custom-color: var(--mat-sys-on-surface-variant);
     }
   }
 }
