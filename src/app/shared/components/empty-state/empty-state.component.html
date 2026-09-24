@@ -1,0 +1,10 @@
+<div class="empty-state-container">
+  <app-icon class="icon" [iconName]="iconName()"></app-icon>
+
+  <h3 class="title">{{ title() }}</h3>
+  @if (description()) {
+    <p class="description">{{ description() }}</p>
+  }
+
+  <ng-content select="[actions]"></ng-content>
+</div>
