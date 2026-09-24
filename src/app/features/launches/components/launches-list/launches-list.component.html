@@ -9,12 +9,15 @@
 @if (loading()) {
   <div class="launches-grid card-skeleton">
     @for (item of loadingArray; track item) {
-      <app-loading-skeleton shape="rectangle" width="100%" height="170px" />
+      <app-loading-skeleton shape="rectangle"
+        width="100%"
+        height="170px"/>
     }
   </div>
 } @else {
   @if (error()) {
-    <app-empty-state [title]="error()?.message ?? 'Something went wrong'" iconName="error" />
+    <app-empty-state [title]="error()?.message ?? 'Something went wrong'"
+      iconName="error"/>
   } @else {
     <div class="launches-grid"
       infinite-scroll
@@ -22,7 +25,8 @@
       [infiniteScrollDistance]="1"
       (scrolled)="loadNextPage()">
       @for (launch of filteredLaunches(); track launch.flightNumber) {
-        <app-launch-card class="launch-card" [launch]="launch" />
+        <app-launch-card class="launch-card"
+          [launch]="launch"/>
       }
     </div>
   }

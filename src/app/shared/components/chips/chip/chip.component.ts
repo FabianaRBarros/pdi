@@ -8,10 +8,10 @@ export enum ChipType {
 }
 
 @Component({
-  selector: "app-chip",
+  selector: 'app-chip',
   imports: [MatChip],
-  templateUrl: "./chip.component.html",
-  styleUrl: "./chip.component.scss",
+  templateUrl: './chip.component.html',
+  styleUrl: './chip.component.scss',
 })
 export class ChipComponent {
   type = input<ChipType>(ChipType.Base)

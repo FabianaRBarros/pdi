@@ -1,9 +1,9 @@
 import { resizeFlickrUrl } from '../../../shared/utils/flickr-image-resize.util'
 import { LaunchAPI } from './launch.api.model'
-import { Launch } from './launch.model'
+import { Launch, LaunchPartial } from './launch.model'
 
 export class LaunchFactory {
-  static createLaunchFromAPI(launch: LaunchAPI): Launch {
+  static createLaunchPartialFromAPI(launch: LaunchAPI): LaunchPartial {
     return {
       flightNumber: launch.flight_number,
       missionName: launch.mission_name,
@@ -11,6 +11,36 @@ export class LaunchFactory {
       imageFallbackUrl: launch.links?.mission_patch_small,
       launchDate: new Date(launch.launch_date_utc),
       success: launch.launch_success,
+    }
+  }
+
+  static createLaunchFromAPI(launch: LaunchAPI): Launch {
+    const primaryPayload = launch.rocket?.second_stage?.payloads?.[0] ?? null
+
+    return {
+      ...LaunchFactory.createLaunchPartialFromAPI(launch),
+      details: launch.details || '',
+
+      rocket: {
+        name: launch.rocket?.rocket_name || 'Unknown Rocket',
+        type: launch.rocket?.rocket_type || 'Unknown Type',
+        payloadType: primaryPayload ? primaryPayload.payload_type : null,
+        payloadMassKg: primaryPayload ? primaryPayload.payload_mass_kg : null,
+      },
+
+      launchSite: {
+        id: launch.launch_site?.site_id || 'N/A',
+        locationLong: launch.launch_site?.site_name_long || 'Unknown Location',
+      },
+
+      galleryImages: launch.links?.flickr_images ?? [],
+
+      links: {
+        video: launch.links?.video_link || null,
+        wikipedia: launch.links?.wikipedia || null,
+        article: launch.links?.article_link || null,
+        missionPatchSmall: launch.links?.mission_patch_small || null,
+      },
     }
   }
 }

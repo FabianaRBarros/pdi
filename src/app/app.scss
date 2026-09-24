@@ -7,13 +7,19 @@
     background: var(--mat-sys-on-secondary-fixed);
     z-index: 1;
 
-    .title {
-      width: 100%;
-      max-width: 1440px;
-      margin: 0 auto;
-      padding: 1.5rem;
-      color: var(--mat-sys-on-secondary);
-      font: var(--mat-sys-headline-medium);
+    .home-btn {
+      border: none;
+      background: none;
+      cursor: pointer;
+
+      .title {
+        width: 100%;
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 1.5rem;
+        color: var(--mat-sys-on-secondary);
+        font: var(--mat-sys-headline-medium);
+      }
     }
   }
 

@@ -12,16 +12,17 @@ import { CardComponent } from './card.component'
       [subtitle]="subtitle()"
       [imageUrl]="imageUrl()"
       [imageAlt]="imageAlt()">
-      <div card-content class="projected-content">
+      <div card-content
+        class="projected-content">
         Projected content
       </div>
     </app-card>
   `,
   imports: [CardComponent],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class TestHostComponent {
-  title = signal('Test title');
+  title = signal('Test title')
   subtitle = signal('Test subtitle')
   imageUrl = signal('')
   imageAlt = signal('Test image')

@@ -1,22 +1,22 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { LoadingSkeletonComponent } from "./loading-skeleton.component";
+import { LoadingSkeletonComponent } from './loading-skeleton.component'
 
-describe("LoadingSkeletonComponent", () => {
-  let component: LoadingSkeletonComponent;
-  let fixture: ComponentFixture<LoadingSkeletonComponent>;
+describe('LoadingSkeletonComponent', () => {
+  let component: LoadingSkeletonComponent
+  let fixture: ComponentFixture<LoadingSkeletonComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LoadingSkeletonComponent],
-    }).compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(LoadingSkeletonComponent);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+    fixture = TestBed.createComponent(LoadingSkeletonComponent)
+    component = fixture.componentInstance
+    await fixture.whenStable()
+  })
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
-});
+  it('should create', () => {
+    expect(component).toBeTruthy()
+  })
+})

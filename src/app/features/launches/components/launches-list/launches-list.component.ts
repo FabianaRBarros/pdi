@@ -7,40 +7,40 @@ import { debounceTime, distinctUntilChanged } from 'rxjs'
 import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component'
 import { InputComponent } from '../../../../shared/components/input/input.component'
 import { LoadingSkeletonComponent } from '../../../../shared/components/loading-skeleton/loading-skeleton.component'
-import { Launch } from '../../models/launch.model'
+import { LaunchPartial } from '../../models/launch.model'
 
-import { LaunchSearchStore } from '../../store/launches-list/launches-list.store'
+import { LaunchesListStore } from '../../store/launches-list/launches-list.store'
 import { LaunchesListStoreService } from '../../store/launches-list/launches-list.store.service'
 import { LaunchCardComponent } from '../launch-card/launch-card.component'
 
 @Component({
   selector: 'app-launches-list',
   imports: [CommonModule, LaunchCardComponent, ReactiveFormsModule, InfiniteScrollDirective, InputComponent, LoadingSkeletonComponent, EmptyStateComponent],
-  providers: [LaunchSearchStore, LaunchesListStoreService],
+  providers: [LaunchesListStore, LaunchesListStoreService],
   templateUrl: './launches-list.component.html',
-  styleUrl: "./launches-list.component.scss",
+  styleUrl: './launches-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LaunchesListComponent implements OnInit {
-  readonly launchesStore = inject(LaunchSearchStore);
+  readonly launchesListStore = inject(LaunchesListStore)
 
-  filteredLaunches: Signal<Launch[]> = this.launchesStore.filteredLaunches;
-  loading: Signal<boolean> = this.launchesStore.isLoading;
-  error: Signal<Error | null> = this.launchesStore.error;
+  filteredLaunches: Signal<LaunchPartial[]> = this.launchesListStore.filteredLaunches
+  loading: Signal<boolean> = this.launchesListStore.isLoading
+  error: Signal<Error | null> = this.launchesListStore.error
   searchForm = new FormGroup({
     term: new FormControl(''),
   })
 
-  private destroyRef = inject(DestroyRef);
-  protected loadingArray = Array(6);
-  
+  private destroyRef = inject(DestroyRef)
+  protected loadingArray = Array(6)
+
   ngOnInit() {
-    this.loadLaunches();
+    this.loadLaunches()
     this.listenForSearchTermChanges()
   }
 
   private loadLaunches() {
-    this.launchesStore.loadLaunches();
+    this.launchesListStore.loadLaunches()
   }
 
   private listenForSearchTermChanges() {
@@ -49,13 +49,13 @@ export class LaunchesListComponent implements OnInit {
       distinctUntilChanged(),
       takeUntilDestroyed(this.destroyRef),
     ).subscribe(form => {
-      this.launchesStore.searchLaunchByTerm(form.term ?? '')
+      this.launchesListStore.searchLaunchByTerm(form.term ?? '')
     })
   }
 
   protected loadNextPage() {
-    if (!this.launchesStore.isLastPage()) {
-      this.launchesStore.getNextPage();
+    if (!this.launchesListStore.isLastPage()) {
+      this.launchesListStore.getNextPage()
     }
   }
 }
