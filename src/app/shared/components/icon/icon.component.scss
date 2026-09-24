@@ -1,0 +1,17 @@
+@use '@angular/material' as mat;
+
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .icon {
+    font-size: var(--icon-custom-size, 16px);
+    width: var(--icon-custom-size, 16px);
+    height: var(--icon-custom-size, 16px);
+
+    @include mat.icon-overrides((
+      color: var(--icon-custom-color),
+    ));
+  }
+}
