@@ -1,0 +1,29 @@
+:host {
+  .empty-state-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    gap: 1.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+
+    .icon {
+      --icon-custom-size: 3.5rem;
+      --icon-custom-color: #1f2937;
+    }
+
+    .title {
+      font: var(--mat-sys-title-large);
+      color: var(--mat-sys-on-surface);
+      margin: 0;
+    }
+
+    .description {
+      font: var(--mat-sys-body-medium);
+      color: var(--mat-sys-on-surface-variant);
+      margin: 0;
+    }
+  }
+}
