@@ -1,0 +1,25 @@
+:host {
+  .top-bar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--mat-sys-on-secondary-fixed);
+    z-index: 1;
+
+    .title {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      color: var(--mat-sys-on-secondary);
+      font: var(--mat-sys-headline-medium);
+    }
+  }
+
+  .app-content {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+  }
+}
