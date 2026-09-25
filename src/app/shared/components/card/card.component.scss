@@ -26,11 +26,13 @@
 
     .card-header {
       .card-title-group {
+        gap: 0.25rem;
         text-align: start;
 
         .card-image-wrapper {
           position: relative;
-          min-height: 80px;
+          height: 80px;
+          width: 80px;
           min-width: 80px;
           border-radius: 4px;
           border: 1px solid var(--mat-sys-outline-variant);
@@ -42,6 +44,7 @@
       display: flex;
       align-items: center;
       gap: 1rem;
+      height: 100%;
     }
   }
 }
