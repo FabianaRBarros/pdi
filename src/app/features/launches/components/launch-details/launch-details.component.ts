@@ -9,6 +9,7 @@ import { handleImageError, IMAGE_PLACEHOLDER } from '../../../../shared/utils/ha
 import { Launch } from '../../models/launch.model'
 import { LaunchStore } from '../../store/launch/launch.store'
 import { LaunchStoreService } from '../../store/launch/launch.store.service'
+import { FavoriteLaunchBtnComponent } from '../favorite-launch-btn/favorite-launch-btn.component'
 
 @Component({
   selector: 'app-launch-details',
@@ -21,6 +22,7 @@ import { LaunchStoreService } from '../../store/launch/launch.store.service'
     EmptyStateComponent,
     NgOptimizedImage,
     LoadingSkeletonComponent,
+    FavoriteLaunchBtnComponent,
   ],
   providers: [LaunchStore, LaunchStoreService],
   templateUrl: './launch-details.component.html',

@@ -1,0 +1,6 @@
+<button class="favorite-launch-btn"
+  [class.is-favorite]="isFavorite(id())"
+  (click)="toggleFavoriteLaunch()">
+  <app-icon class="favorite-icon"
+    [iconName]="isFavorite(id()) ? 'star' : 'star_border'"></app-icon>
+</button>

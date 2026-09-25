@@ -5,6 +5,7 @@ import { Launch, LaunchPartial } from './launch.model'
 export class LaunchFactory {
   static createLaunchPartialFromAPI(launch: LaunchAPI): LaunchPartial {
     return {
+      id: launch.flight_number.toString(),
       flightNumber: launch.flight_number,
       missionName: launch.mission_name,
       imageUrl: launch.links?.flickr_images.length > 0 ? resizeFlickrUrl(launch.links?.flickr_images[0]) : null,

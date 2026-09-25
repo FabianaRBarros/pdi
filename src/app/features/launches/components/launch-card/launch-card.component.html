@@ -1,4 +1,4 @@
-<app-card
+<app-card class="launch-card"
   [title]="launch().missionName"
   [subtitle]="'Flight n° ' + launch().flightNumber"
   [imageUrl]="launch().imageUrl ?? ''"
@@ -20,6 +20,10 @@
           {{ launch().success ? 'Success' : 'Failure' }}
         </app-chip>
       </app-chips-wrapper>
+
+      <app-favorite-launch-btn class="favorite-btn"
+        [id]="launch().id"
+        (click)="$event.stopPropagation()"></app-favorite-launch-btn>
     </div>
   </div>
 </app-card>

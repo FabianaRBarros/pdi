@@ -25,7 +25,7 @@ describe('LaunchesListStoreService', () => {
     // We need this because of the temporary delay(300)
     vi.useFakeTimers()
 
-    vi.spyOn(LaunchFactory, 'createLaunchFromAPI')
+    vi.spyOn(LaunchFactory, 'createLaunchPartialFromAPI')
       .mockImplementation(() => mockParsedLaunches[0])
 
     TestBed.configureTestingModule({
