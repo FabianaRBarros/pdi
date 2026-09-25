@@ -9,8 +9,7 @@ import {
   MatCardTitle,
   MatCardTitleGroup,
 } from '@angular/material/card'
-
-const IMAGE_PLACEHOLDER = '/assets/images/image-placeholder.png'
+import { handleImageError, IMAGE_PLACEHOLDER } from '../../utils/handle-image-error.util'
 
 @Component({
   selector: 'app-card',
@@ -44,9 +43,8 @@ export class CardComponent {
     return imageUrl !== '' ? imageUrl : this.fallbackImageUrl()
   })
 
-  onImgError(event: Event) {
-    const element = event.target as HTMLImageElement
-    element.src = IMAGE_PLACEHOLDER
+  protected onImgError(event: Event) {
+    handleImageError(event)
   }
 
   protected handleCardClick() {

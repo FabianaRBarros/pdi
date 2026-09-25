@@ -39,6 +39,12 @@ export class LaunchesListComponent implements OnInit {
     this.listenForSearchTermChanges()
   }
 
+  protected loadNextPage() {
+    if (!this.launchesListStore.isLastPage()) {
+      this.launchesListStore.getNextPage()
+    }
+  }
+
   private loadLaunches() {
     this.launchesListStore.loadLaunches()
   }
@@ -51,11 +57,5 @@ export class LaunchesListComponent implements OnInit {
     ).subscribe(form => {
       this.launchesListStore.searchLaunchByTerm(form.term ?? '')
     })
-  }
-
-  protected loadNextPage() {
-    if (!this.launchesListStore.isLastPage()) {
-      this.launchesListStore.getNextPage()
-    }
   }
 }

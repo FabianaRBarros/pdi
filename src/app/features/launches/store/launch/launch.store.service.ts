@@ -14,7 +14,7 @@ export class LaunchStoreService {
 
   getLaunchById(id: string): Observable<Launch | null> {
     return this.http.get<LaunchAPI[]>(this.localUrl).pipe(
-      delay(300),
+      delay(300), // TODO: This should be removed when we have the actual request
       map(launches => launches.find(l => l.flight_number.toString() === id)),
       map(launch => launch ? LaunchFactory.createLaunchFromAPI(launch) : null),
     )

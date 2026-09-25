@@ -7,7 +7,7 @@ import { Component, input } from '@angular/core'
   styleUrl: './loading-skeleton.component.scss',
 })
 export class LoadingSkeletonComponent {
-  readonly width = input<string>('100%')
-  readonly height = input<string>('1rem')
-  readonly shape = input<'line' | 'circle' | 'rectangle'>('line')
+  width = input<string>('100%')
+  height = input<string>('1rem')
+  shape = input<'line' | 'circle' | 'rectangle'>('line')
 }
