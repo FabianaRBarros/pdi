@@ -9,7 +9,7 @@ import { IconComponent } from '../icon/icon.component'
   styleUrl: './empty-state.component.scss',
 })
 export class EmptyStateComponent {
-  readonly title = input.required<string>()
-  readonly iconName = input.required<string>()
-  readonly description = input<string>('')
+  title = input.required<string>()
+  iconName = input.required<string>()
+  description = input<string>('')
 }

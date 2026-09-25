@@ -10,5 +10,5 @@ import { LaunchDetailsComponent } from '../../features/launches/components/launc
   styleUrl: './launch-details.container.scss',
 })
 export class LaunchDetailsContainer {
-  readonly launchId = input.required<string>()
+  launchId = input.required<string>()
 }

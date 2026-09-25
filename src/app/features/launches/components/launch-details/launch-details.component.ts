@@ -5,12 +5,10 @@ import { ChipComponent, ChipType } from '../../../../shared/components/chips/chi
 import { ChipsWrapperComponent } from '../../../../shared/components/chips/chips-wrapper/chips-wrapper.component'
 import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component'
 import { LoadingSkeletonComponent } from '../../../../shared/components/loading-skeleton/loading-skeleton.component'
+import { handleImageError, IMAGE_PLACEHOLDER } from '../../../../shared/utils/handle-image-error.util'
 import { Launch } from '../../models/launch.model'
 import { LaunchStore } from '../../store/launch/launch.store'
 import { LaunchStoreService } from '../../store/launch/launch.store.service'
-
-// TODO: Move to util
-const IMAGE_PLACEHOLDER = '/assets/images/image-placeholder.png'
 
 @Component({
   selector: 'app-launch-details',
@@ -45,9 +43,7 @@ export class LaunchDetailsComponent implements OnInit {
     this.launchStore.loadLaunches(this.id())
   }
 
-  onImgError(event: Event) {
-    const element = event.target as HTMLImageElement
-    element.src = IMAGE_PLACEHOLDER
+  protected onImgError(event: Event) {
+    handleImageError(event)
   }
-
 }

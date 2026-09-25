@@ -40,10 +40,6 @@ export class InputComponent implements ControlValueAccessor {
   protected onTouched = () => {
   }
 
-  onInputChange(value: string) {
-    this.onChange?.(value)
-  }
-
   writeValue(value: string): void {
     this.localValue.set(value)
   }
@@ -58,5 +54,9 @@ export class InputComponent implements ControlValueAccessor {
 
   setDisabledState?(isDisabled: boolean): void {
     this.localDisabled.set(isDisabled)
+  }
+
+  protected onInputChange(value: string) {
+    this.onChange?.(value)
   }
 }
