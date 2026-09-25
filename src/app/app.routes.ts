@@ -4,5 +4,5 @@ import { LaunchesListContainer } from './containers/launches-list/launches-list.
 
 export const routes: Routes = [
   { path: '', component: LaunchesListContainer, pathMatch: 'full' },
-  { path: ':id', component: LaunchDetailsContainer, pathMatch: 'full' },
+  { path: 'launch/:launchId', component: LaunchDetailsContainer, pathMatch: 'full' },
 ]

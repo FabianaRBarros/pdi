@@ -20,21 +20,20 @@ export class LaunchFactory {
     return {
       ...LaunchFactory.createLaunchPartialFromAPI(launch),
       details: launch.details || '',
-
       rocket: {
         name: launch.rocket?.rocket_name || 'Unknown Rocket',
         type: launch.rocket?.rocket_type || 'Unknown Type',
         payloadType: primaryPayload ? primaryPayload.payload_type : null,
         payloadMassKg: primaryPayload ? primaryPayload.payload_mass_kg : null,
       },
-
       launchSite: {
         id: launch.launch_site?.site_id || 'N/A',
         locationLong: launch.launch_site?.site_name_long || 'Unknown Location',
       },
-
-      galleryImages: launch.links?.flickr_images ?? [],
-
+      galleryImages: launch.links?.flickr_images ?
+        launch.links.flickr_images.map(image => resizeFlickrUrl(image)).filter(image => image !== null)
+        :
+        [],
       links: {
         video: launch.links?.video_link || null,
         wikipedia: launch.links?.wikipedia || null,

@@ -29,6 +29,6 @@ export class LaunchCardComponent {
   protected chipType = ChipType
 
   protected goToDetails() {
-    void this.router.navigate([this.launch().flightNumber])
+    void this.router.navigate(['launch', this.launch().flightNumber])
   }
 }

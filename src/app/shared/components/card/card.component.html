@@ -9,9 +9,9 @@
 
 <ng-template #card>
   <mat-card class="card">
-    @if (localImageUrl()) {
+    @if (showImage()) {
       <mat-card-header class="card-header">
-        <mat-card-title-group>
+        <mat-card-title-group class="card-title-group">
           <div class="card-image-wrapper">
             <img
               matCardImage
@@ -37,7 +37,7 @@
     }
 
     <mat-card-content class="card-content">
-      <ng-content select="[card-content]"></ng-content>
+      <ng-content></ng-content>
     </mat-card-content>
   </mat-card>
 </ng-template>
