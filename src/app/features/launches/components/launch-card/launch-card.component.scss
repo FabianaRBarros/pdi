@@ -1,16 +1,30 @@
 :host {
   display: block;
 
-  .date-text {
+  .launch-card-content-wrapper {
     display: flex;
-    align-items: center;
-    margin: 0;
-    gap: 8px;
-    color: var(--mat-sys-on-surface-variant);
-    font-size: 14px;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
 
-    .date-icon {
-      --icon-custom-color: var(--mat-sys-on-surface-variant);
+    .launch-card-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      .date-text {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        gap: 8px;
+        color: var(--mat-sys-on-surface-variant);
+        font-size: 14px;
+
+        .date-icon {
+          --icon-custom-color: var(--mat-sys-on-surface-variant);
+        }
+      }
     }
   }
 }
