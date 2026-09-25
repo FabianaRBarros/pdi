@@ -1,0 +1,233 @@
+@if (isLoading()) {
+  <div class="launch-header">
+    <div class="launch-title-and-image-wrapper">
+      <div class="image-wrapper no-border">
+        <app-loading-skeleton class="image-loading"
+          width="100%"
+          height="100%"/>
+      </div>
+      <div class="launch-title-wrapper loading">
+        <app-loading-skeleton width="320px"
+          height="2.5rem"/>
+        <app-loading-skeleton width="150px"
+          height="1.25rem"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="launch-content">
+    <app-card title="About the Mission">
+      <div class="launch-details-wrapper">
+        <div>
+          <app-loading-skeleton width="90%"
+            height="1rem"/>
+          <app-loading-skeleton width="65%"
+            height="1rem"/>
+        </div>
+
+        <!-- Success/Failure Chip Skeleton -->
+        <app-loading-skeleton shape="rectangle"
+          width="80px"
+          height="1.25rem"/>
+      </div>
+    </app-card>
+
+    <section class="info-grid">
+      <!-- Rocket Info Card -->
+      <app-card title="Rocket">
+        <ul class="info-list loading">
+          <li class="list-item">
+            <app-loading-skeleton width="60px"
+              height="1rem"/>
+            <app-loading-skeleton width="100px"
+              height="1rem"/>
+          </li>
+          <li class="list-item">
+            <app-loading-skeleton width="50px"
+              height="1rem"/>
+            <app-loading-skeleton width="120px"
+              height="1rem"/>
+          </li>
+          <li class="list-item">
+            <app-loading-skeleton width="70px"
+              height="1rem"/>
+            <app-loading-skeleton width="80px"
+              height="1rem"/>
+          </li>
+          <li class="list-item">
+            <app-loading-skeleton width="110px"
+              height="1rem"/>
+            <app-loading-skeleton width="60px"
+              height="1rem"/>
+          </li>
+        </ul>
+      </app-card>
+
+      <!-- Launch Site Card -->
+      <app-card title="Launch Site">
+        <ul class="info-list loading">
+          <li class="list-item">
+            <app-loading-skeleton width="50px"
+              height="1rem"/>
+            <app-loading-skeleton width="70px"
+              height="1rem"/>
+          </li>
+          <li class="list-item">
+            <app-loading-skeleton width="80px"
+              height="1rem"/>
+            <app-loading-skeleton width="140px"
+              height="1rem"/>
+          </li>
+        </ul>
+      </app-card>
+    </section>
+
+    <app-card title="Image Gallery">
+      <div class="gallery-grid">
+        @for (item of loadingArr; track $index) {
+          <app-loading-skeleton shape="rectangle"
+            width="100%"
+            height="150px"/>
+        }
+      </div>
+    </app-card>
+
+    <!-- Resources & Links Card -->
+    <app-card title="Resources & Links">
+      <ul class="info-list loading">
+        <li class="list-item">
+          <app-loading-skeleton width="120px"
+            height="1rem"/>
+        </li>
+        <li class="list-item">
+          <app-loading-skeleton width="95px"
+            height="1rem"/>
+        </li>
+        <li class="list-item">
+          <app-loading-skeleton width="85px"
+            height="1rem"/>
+        </li>
+      </ul>
+    </app-card>
+  </div>
+} @else {
+  @if (launch(); as data) {
+    <div class="launch-header">
+      <div class="launch-title-and-image-wrapper">
+        <div class="image-wrapper">
+          <img class="launch-image"
+            fill
+            [ngSrc]="data.imageUrl ?? data.imageFallbackUrl"
+            [alt]="data.missionName"
+            (error)="onImgError($event)">
+        </div>
+        <div class="launch-title-wrapper">
+          <h1 class="launch-title">Flight #{{ data.flightNumber }}: {{ data.missionName }}</h1>
+          <p class="launch-date">{{ data.launchDate | date: 'dd/MM/yyyy HH:mm' }} UTC</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="launch-content">
+      <app-card title="About the Mission">
+        <div class="launch-details-wrapper">
+          <p class="launch-details-description">{{ data.details || 'No additional details provided for this launch.' }}</p>
+          <app-chips-wrapper>
+            <app-chip class="launch-success-status"
+              [type]="data.success ? chipType.Success : chipType.Error">
+              {{ data.success ? 'Success' : 'Failure' }}
+            </app-chip>
+          </app-chips-wrapper>
+        </div>
+      </app-card>
+
+      <section class="info-grid">
+        <app-card title="Rocket">
+          <ul class="info-list">
+            <li class="list-item"><strong>Name:</strong> {{ data.rocket.name }}</li>
+            <li class="list-item"><strong>Type:</strong> {{ data.rocket.type }}</li>
+            <li class="list-item"><strong>Payload:</strong> {{ data.rocket.payloadType }}</li>
+            @if (data.rocket.payloadMassKg) {
+              <li class="list-item"><strong>Payload Mass:</strong> {{ data.rocket.payloadMassKg | number }} kg</li>
+            }
+          </ul>
+        </app-card>
+
+        <app-card title="Launch Site">
+          <ul class="info-list">
+            <li class="list-item"><strong>Code:</strong> {{ data.launchSite.id }}</li>
+            <li class="list-item"><strong>Location:</strong> {{ data.launchSite.locationLong }}</li>
+          </ul>
+        </app-card>
+      </section>
+
+      <app-card title="Image Gallery">
+        @if (data.galleryImages.length > 0) {
+          <div class="gallery-grid">
+            @for (img of data.galleryImages; track img) {
+              <img [src]="img"
+                alt="Launch photograph"
+                class="gallery-thumb"
+                loading="lazy"/>
+            }
+          </div>
+        } @else {
+          <div class="links-row">
+            <p class="links-description">No images provided for this launch.</p>
+          </div>
+        }
+      </app-card>
+
+      <app-card title="Resources & Links">
+        @if (data.links.video || data.links.wikipedia || data.links.article) {
+          <ul class="links-row info-list">
+            @if (data.links.video) {
+              <li class="list-item">
+                <a [href]="data.links.video"
+                  target="_blank"
+                  class="link link-youtube">Watch on YouTube</a>
+              </li>
+            }
+            @if (data.links.wikipedia) {
+              <li class="list-item">
+                <a [href]="data.links.wikipedia"
+                  target="_blank"
+                  class="link link-wiki">Wikipedia</a>
+              </li>
+            }
+            @if (data.links.article) {
+              <li class="list-item">
+                <a [href]="data.links.article"
+                  target="_blank"
+                  class="link link-article">Article</a>
+              </li>
+            }
+          </ul>
+        } @else {
+          <div class="links-row">
+            <p class="links-description">No Resources & Links provided for this launch.</p>
+          </div>
+        }
+      </app-card>
+    </div>
+  } @else {
+    <div class="launch-header">
+      <div class="launch-title-and-image-wrapper">
+        <div class="image-wrapper">
+          <img
+            fill
+            [ngSrc]="imagePlaceholder"
+            alt="">
+        </div>
+        <div class="launch-title-wrapper">
+          <h1 class="launch-title">Flight {{ id() }}</h1>
+        </div>
+      </div>
+    </div>
+
+    <app-empty-state title="Could not load the information for this launch"
+      [description]="error()?.message ??
+    'Something went wrong'"
+      iconName="error"/>
+  }
+}

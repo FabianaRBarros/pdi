@@ -12,7 +12,7 @@ import { CardComponent } from './card.component'
       [subtitle]="subtitle()"
       [imageUrl]="imageUrl()"
       [imageAlt]="imageAlt()">
-      <div card-content
+      <div
         class="projected-content">
         Projected content
       </div>
