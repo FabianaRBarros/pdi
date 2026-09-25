@@ -3,8 +3,8 @@
 :host {
   .chip {
     @include mat.chips-overrides((
-      label-text-size: 12px,
-      container-height: 24px,
+      label-text-size: var(--chip-text-size, 12px),
+      container-height: var(--chip-container-height, 24px),
     ));
 
     &.success {

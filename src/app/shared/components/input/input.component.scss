@@ -1,7 +1,12 @@
+@use '@angular/material' as mat;
+
 :host {
   display: block;
 
   .input-field {
     width: 100%;
+    @include mat.form-field-overrides((
+      outlined-outline-color: var(--mat-sys-outline-variant),
+    ));
   }
 }

@@ -31,6 +31,7 @@ const IMAGE_PLACEHOLDER = '/assets/images/image-placeholder.png'
 export class CardComponent {
   title = input.required<string>()
   subtitle = input<string>()
+  showImage = input<boolean>(false)
   imageUrl = input<string>()
   fallbackImageUrl = input<string>(IMAGE_PLACEHOLDER)
   imageAlt = input<string>()

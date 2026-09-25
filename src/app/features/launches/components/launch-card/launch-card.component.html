@@ -4,19 +4,18 @@
   [imageUrl]="launch().imageUrl ?? ''"
   [fallbackImageUrl]="launch().imageFallbackUrl"
   imageAlt="Mission's patch"
+  [showImage]="true"
   [clickable]="true"
   (onClickCard)="goToDetails()">
-  <ng-container card-content>
-    <p class="date-text">
-      <app-icon class="date-icon"
-        iconName="calendar_today"></app-icon>
-      {{ launch().launchDate | date:'dd/MM/yyyy' }}
-    </p>
+  <p class="date-text">
+    <app-icon class="date-icon"
+      iconName="calendar_today"></app-icon>
+    {{ launch().launchDate | date:'dd/MM/yyyy' }}
+  </p>
 
-    <app-chips-wrapper>
-      <app-chip [type]="launch().success ? chipType.Success : chipType.Error">
-        {{ launch().success ? 'Success' : 'Failure' }}
-      </app-chip>
-    </app-chips-wrapper>
-  </ng-container>
+  <app-chips-wrapper>
+    <app-chip [type]="launch().success ? chipType.Success : chipType.Error">
+      {{ launch().success ? 'Success' : 'Failure' }}
+    </app-chip>
+  </app-chips-wrapper>
 </app-card>
