@@ -132,12 +132,17 @@
       <app-card title="About the Mission">
         <div class="launch-details-wrapper">
           <p class="launch-details-description">{{ data.details || 'No additional details provided for this launch.' }}</p>
-          <app-chips-wrapper>
-            <app-chip class="launch-success-status"
-              [type]="data.success ? chipType.Success : chipType.Error">
-              {{ data.success ? 'Success' : 'Failure' }}
-            </app-chip>
-          </app-chips-wrapper>
+
+          <div class="launch-action-and-status">
+            <app-chips-wrapper>
+              <app-chip class="launch-success-status"
+                [type]="data.success ? chipType.Success : chipType.Error">
+                {{ data.success ? 'Success' : 'Failure' }}
+              </app-chip>
+            </app-chips-wrapper>
+            <app-favorite-launch-btn [id]="data.id"
+              (click)="$event.stopPropagation()"></app-favorite-launch-btn>
+          </div>
         </div>
       </app-card>
 

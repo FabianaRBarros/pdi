@@ -1,4 +1,5 @@
 export interface LaunchPartial {
+  id: string,
   flightNumber: number,
   missionName: string,
   imageUrl: string | null,

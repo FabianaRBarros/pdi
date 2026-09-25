@@ -7,6 +7,7 @@ import { ChipComponent, ChipType } from '../../../../shared/components/chips/chi
 import { ChipsWrapperComponent } from '../../../../shared/components/chips/chips-wrapper/chips-wrapper.component'
 import { IconComponent } from '../../../../shared/components/icon/icon.component'
 import { LaunchPartial } from '../../models/launch.model'
+import { FavoriteLaunchBtnComponent } from '../favorite-launch-btn/favorite-launch-btn.component'
 
 @Component({
   selector: 'app-launch-card',
@@ -17,6 +18,7 @@ import { LaunchPartial } from '../../models/launch.model'
     ChipComponent,
     ChipsWrapperComponent,
     IconComponent,
+    FavoriteLaunchBtnComponent,
   ],
   templateUrl: './launch-card.component.html',
   styleUrl: './launch-card.component.scss',
