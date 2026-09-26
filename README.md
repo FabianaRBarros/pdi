@@ -1,41 +1,85 @@
-# Technical Assessment: Angular & NgRx "SpaceX Explorer" v1.0
+# 🚀 SpaceXKata
 
-Welcome! The goal of this technical assessment is to refactor, debug, and finalize an Angular application built for exploring SpaceX rocket launches. 
+A modern, high-performance Angular application designed to browse and manage SpaceX launch operations.
 
-The application uses **Angular Material** for the UI and **NgRx** for global state management. However, the previous developer rushed the initial implementation. The current codebase contains memory leaks, performance bottlenecks, a critical architectural flaw inside the NgRx Reducer, and missing core async features.
+## ✨ Key Features
 
+* **Signal Architecture:** Employs reactive signals (`signal`, `computed`, `input`) for granular,
+  performant rendering.
+* **State Management:** Powered by `@ngrx/signals` (`signalStore`) providing global singletons and optimized reactive
+  computed selectors.
+* **Local Storage Sync:** Automatic client-side caching of favorite launches via synchronized state effects.
 
-## 🎯 Your Missions
+---
 
-1. **Implement the Missing NgRx Effect:**
-   - Currently, the component triggers raw HTTP calls directly via the service. Refactor this logic so the component dispatches a `loadLaunches` action instead.
-   - Create a **NgRx Effect** from scratch to handle the asynchronous stream fetching data from the SpaceX API.
-2. **Feature Development (Details View & Favorites):**
-   - Implement the launch details view, mapped to the `/launch/:id` route.
-   - Leverage the NgRx store to manage the "Favorite" state of a launch. This state must persist seamlessly when navigating back and forth between the list and details views.
-3. **Project configuration :** 
-    - Configure the project to be production ready
+## 💻 Local Setup & Installation
 
-## 🛠️ Technical Specifications
+Follow these straightforward instructions to set up and run the application locally on your machine.
 
-> ⚠️ **Note:** The SpaceX public API is temporarily unavailable. The application is currently using local mock data instead. The endpoints below are the ones that should normally be used — implement your solution as if the API were live (the service layer is already wired to the mock data for you).
+### Prerequisites
 
-- **List Endpoint:** ~~`https://api.spacexdata.com/v4/launches/past`~~ → `launches.json` (local mock)
-- **Details Endpoint:** ~~`https://api.spacexdata.com/v4/launches/{id}`~~ → filtered from `launches.json` (local mock)
-- Angular Material is pre-installed. Baseline layouts and grid styling can be found in the component's SCSS file.
+Ensure you have the following software installed locally:
 
-## 📋 Evaluation Criteria
-- **Clean Architecture:** Proper separation of concerns (Smart vs. Presentational components, encapsulating logic away from templates).
-- **RxJS & NgRx Mastery:** Clean stream manipulation, avoiding nesting subscriptions, keeping the state strictly immutable, and leveraging memoized selectors.
-- **Modern Angular Standards:** Proper usage of Standalone components and modern control flow (or Signals if you choose to introduce them).
-- **TypeScript Rigor:** Explicit interface definitions for API payloads. The use of `any` is strictly prohibited.
-- **Git Hygiene:** Clean, atomic, and descriptive commit history.
+* [Node.js](https://nodejs.org) (^20.19.0 || ^22.12.0 || ^24.0.0)
+* [npm](https://npmjs.com) (bundled with Node)
 
-## Bonus
-- Setup a docker production ready for this app
+### 1. Clone the Repository
 
-## 📦 Submission Guidelines
-1. Push your code to a public GitHub repository.
-2. Create a new `README.md` and ensure it includes straightforward instructions to install and run the project locally 
+```bash
+git clone https://github.com/FabianaRBarros/pdi
+cd pdi
+```
 
-Good luck! We look forward to reviewing your code.
+### 2. Install Dependencies
+
+Install all project dependencies using npm:
+
+```bash
+npm install
+```
+
+### 3. Start the Development Server
+
+Run the application locally in development mode:
+
+```bash
+npm run start
+```
+
+Once compilation finishes, open your browser and navigate to **`http://localhost:4200/`**. The application will
+automatically reload if you modify any source files.
+
+---
+
+## 🧪 Testing and Quality Gates
+
+The project uses **Vitest** for running quick, asynchronous, and isolated microtask tests without legacy Zone.js
+constraints.
+
+### Run Unit Tests
+
+Execute the automated test suite through the command line terminal:
+
+```bash
+npm run test
+```
+
+## 📦 Production Build & Deployment
+
+To prepare the application for production, you need to compile a highly optimized production bundle.
+
+### 1. Build the Project
+
+Run the build script to compile the application:
+
+```bash
+npm run build
+```
+
+This command triggers Ahead-of-Time (AOT) compilation, applies code-splitting, minifies the bundles, and outputs the
+static assets to the `dist/spaceX_kata/browser` directory.
+
+### 2. Deployment Strategies
+
+Since Angular is a Single Page Application (SPA), the generated `dist/` directory consists purely of static assets
+(`HTML`, `JS`, `CSS`, images). You can deploy it to any static hosting provider.
