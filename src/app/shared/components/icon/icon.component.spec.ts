@@ -13,6 +13,10 @@ describe('IconComponent', () => {
 
     fixture = TestBed.createComponent(IconComponent)
     component = fixture.componentInstance
+
+    fixture.componentRef.setInput('iconName', 'star')
+    fixture.detectChanges()
+
     await fixture.whenStable()
   })
 

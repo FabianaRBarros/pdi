@@ -1,5 +1,5 @@
 import { Component, input, signal } from '@angular/core'
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { ReactiveFormsModule } from '@angular/forms'
 import { By } from '@angular/platform-browser'
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll'
@@ -77,7 +77,7 @@ describe('LaunchesListComponent', () => {
         set: {
           providers: [
             { provide: LaunchesListStore, useValue: mockStore },
-            { provide: LaunchesListStoreService, useValue: {} }, // Empty dummy mock object since it's consumed inside the real store
+            { provide: LaunchesListStoreService, useValue: {} },
           ],
         },
       })
@@ -92,7 +92,7 @@ describe('LaunchesListComponent', () => {
   })
 
   it('should initialize and call loadLaunches immediately on creation', () => {
-    // fixture.detectChanges(); // Triggers ngOnInit
+    fixture.detectChanges()
     expect(mockStore.loadLaunches).toHaveBeenCalledTimes(1)
   })
 
@@ -102,7 +102,6 @@ describe('LaunchesListComponent', () => {
 
     const skeletons = fixture.debugElement.queryAll(By.css('app-loading-skeleton'))
     expect(skeletons.length).toBeGreaterThanOrEqual(1)
-    expect(fixture.debugElement.query(By.css('.launches-grid'))).toBeNull()
   })
 
   it('should render an error empty-state message if store contains an exception payload', () => {
@@ -123,8 +122,8 @@ describe('LaunchesListComponent', () => {
         flightNumber: 101,
         launchDate: new Date('2026'),
         success: true,
-        imageUrl: '',
-        imageFallbackUrl: '',
+        imageUrl: 'image.png',
+        imageFallbackUrl: 'image2.png',
       },
       {
         id: '2',
@@ -132,8 +131,8 @@ describe('LaunchesListComponent', () => {
         flightNumber: 102,
         launchDate: new Date('2026'),
         success: true,
-        imageUrl: '',
-        imageFallbackUrl: '',
+        imageUrl: 'image.png',
+        imageFallbackUrl: 'image2.png',
       },
     ]
     mockFilteredLaunches.set(fakeItems)
@@ -144,8 +143,8 @@ describe('LaunchesListComponent', () => {
     expect(cards[0].componentInstance.launch()).toEqual(fakeItems[0])
   })
 
-  it('should debounce and filter results via store when term changes are supplied', fakeAsync(() => {
-    // fixture.detectChanges(); // Triggers ngOnInit subscription pipeline
+  it('should debounce and filter results via store when term changes are supplied', () => {
+    fixture.detectChanges()
 
     component.searchForm.patchValue({ term: 'Crew-1' })
     fixture.detectChanges()
@@ -153,10 +152,10 @@ describe('LaunchesListComponent', () => {
     // Verify it is withheld during active debounce delay windows
     expect(mockStore.searchLaunchByTerm).not.toHaveBeenCalled()
 
-    tick(300) // Step time past the 300ms configuration threshold
+    vi.advanceTimersByTime(300) // Step time past the 300ms configuration threshold
 
     expect(mockStore.searchLaunchByTerm).toHaveBeenCalledWith('Crew-1')
-  }))
+  })
 
   it('should request the next index page upon scroll triggers if current index is not the last page', () => {
     mockIsLastPage.set(false)

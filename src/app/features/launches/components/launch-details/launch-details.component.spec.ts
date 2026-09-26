@@ -1,22 +1,26 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { LaunchDetailsComponent } from "./launch-details.component";
+import { LaunchDetailsComponent } from './launch-details.component'
 
-describe("LaunchDetailsComponent", () => {
-  let component: LaunchDetailsComponent;
-  let fixture: ComponentFixture<LaunchDetailsComponent>;
+describe('LaunchDetailsComponent', () => {
+  let component: LaunchDetailsComponent
+  let fixture: ComponentFixture<LaunchDetailsComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LaunchDetailsComponent],
-    }).compileComponents();
+    }).compileComponents()
 
-    fixture = TestBed.createComponent(LaunchDetailsComponent);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
-  });
+    fixture = TestBed.createComponent(LaunchDetailsComponent)
+    component = fixture.componentInstance
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
-});
+    fixture.componentRef.setInput('id', 'launch-unique-id-123')
+    fixture.detectChanges()
+
+    await fixture.whenStable()
+  })
+
+  it('should create', () => {
+    expect(component).toBeTruthy()
+  })
+})
