@@ -49,7 +49,7 @@ describe('LaunchStoreService', () => {
       result = response
     })
 
-    const req = httpMock.expectOne('launches.json')
+    const req = httpMock.expectOne('data/launches.json')
     expect(req.request.method).toBe('GET')
 
     req.flush(mockApiLaunches)
@@ -67,7 +67,7 @@ describe('LaunchStoreService', () => {
       result = response
     })
 
-    const req = httpMock.expectOne('launches.json')
+    const req = httpMock.expectOne('data/launches.json')
     req.flush(mockApiLaunches)
 
     vi.advanceTimersByTime(300)
