@@ -2,7 +2,8 @@ import { inject } from '@angular/core'
 import { tapResponse } from '@ngrx/operators'
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals'
 import { rxMethod } from '@ngrx/signals/rxjs-interop'
-import { pipe, switchMap, tap } from 'rxjs'
+import { pipe } from 'rxjs'
+import { switchMap, tap } from 'rxjs/operators'
 import { Launch } from '../../models/launch.model'
 import { LaunchStoreService } from './launch.store.service'
 
@@ -15,13 +16,13 @@ type LaunchState = {
 const initialState: LaunchState = {
   launch: null,
   isLoading: false,
-  error: null
-};
+  error: null,
+}
 
 export const LaunchStore = signalStore(
   withState(initialState),
   withMethods((store) => {
-    const launchService = inject(LaunchStoreService);
+    const launchService = inject(LaunchStoreService)
 
     return {
       loadLaunches: rxMethod<string>(
@@ -33,11 +34,11 @@ export const LaunchStore = signalStore(
                 next: (launch) => patchState(store, { launch }),
                 error: (error) => patchState(store, { error: error as Error }),
                 finalize: () => patchState(store, { isLoading: false }),
-              })
-            );
-          })
-        )
+              }),
+            )
+          }),
+        ),
       ),
-    };
-  })
-);
+    }
+  }),
+)

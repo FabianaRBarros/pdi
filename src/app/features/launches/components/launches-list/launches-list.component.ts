@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, Signal 
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms'
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll'
-import { debounceTime, distinctUntilChanged } from 'rxjs'
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators'
 import { EmptyStateComponent } from '../../../../shared/components/empty-state/empty-state.component'
 import { InputComponent } from '../../../../shared/components/input/input.component'
 import { LoadingSkeletonComponent } from '../../../../shared/components/loading-skeleton/loading-skeleton.component'
