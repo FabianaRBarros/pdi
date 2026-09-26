@@ -1,8 +1,21 @@
 import { Routes } from '@angular/router'
-import { LaunchDetailsContainer } from './containers/launch-details/launch-details.container'
-import { LaunchesListContainer } from './containers/launches-list/launches-list.container'
 
 export const routes: Routes = [
-  { path: '', component: LaunchesListContainer, pathMatch: 'full' },
-  { path: 'launch/:launchId', component: LaunchDetailsContainer, pathMatch: 'full' },
+  {
+    path: '',
+    pathMatch: 'full',
+    loadComponent: () => import('./containers/launches-list/launches-list.container')
+      .then(m => m.LaunchesListContainer),
+  },
+  {
+    path: 'launch/:launchId',
+    pathMatch: 'full',
+    loadComponent: () => import('./containers/launch-details/launch-details.container')
+      .then(m => m.LaunchDetailsContainer),
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: '',
+  },
 ]
