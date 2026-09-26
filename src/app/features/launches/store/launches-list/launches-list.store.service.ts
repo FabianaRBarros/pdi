@@ -8,7 +8,7 @@ import { LaunchPartial } from '../../models/launch.model'
 
 @Injectable()
 export class LaunchesListStoreService {
-  private localUrl = 'launches.json'
+  private localUrl = 'data/launches.json'
 
   readonly http = inject(HttpClient)
 

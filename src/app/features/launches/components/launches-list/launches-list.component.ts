@@ -32,7 +32,7 @@ export class LaunchesListComponent implements OnInit {
   })
 
   private destroyRef = inject(DestroyRef)
-  protected loadingArray = Array(6)
+  protected loadingArray = Array(12)
 
   ngOnInit() {
     this.loadLaunches()

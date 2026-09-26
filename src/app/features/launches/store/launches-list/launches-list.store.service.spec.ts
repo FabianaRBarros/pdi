@@ -56,7 +56,7 @@ describe('LaunchesListStoreService', () => {
       result = launches
     })
 
-    const req = httpMock.expectOne('launches.json')
+    const req = httpMock.expectOne('data/launches.json')
     expect(req.request.method).toBe('GET')
     req.flush(mockApiResponse)
 
@@ -79,7 +79,7 @@ describe('LaunchesListStoreService', () => {
       },
     })
 
-    const req = httpMock.expectOne('launches.json')
+    const req = httpMock.expectOne('data/launches.json')
     req.flush('Internal Server Error', { status: 500, statusText: 'Internal Server Error' })
 
     vi.advanceTimersByTime(300)
