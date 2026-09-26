@@ -10,6 +10,7 @@ import { CardComponent } from './card.component'
     <app-card
       [title]="title()"
       [subtitle]="subtitle()"
+      [showImage]="showImage()"
       [imageUrl]="imageUrl()"
       [imageAlt]="imageAlt()">
       <div
@@ -26,6 +27,7 @@ class TestHostComponent {
   subtitle = signal('Test subtitle')
   imageUrl = signal('')
   imageAlt = signal('Test image')
+  showImage = signal(false)
 }
 
 describe('CardComponent', () => {
@@ -71,7 +73,8 @@ describe('CardComponent', () => {
     expect(subtitle).toBeNull()
   })
 
-  it('should display the image when imageUrl is provided', () => {
+  it('should display the image when showImage is true', () => {
+    hostComponent.showImage.set(true)
     hostComponent.imageUrl.set('assets/test-image.jpg')
     fixture.detectChanges()
 
@@ -81,6 +84,7 @@ describe('CardComponent', () => {
   })
 
   it('should set the image source', () => {
+    hostComponent.showImage.set(true)
     hostComponent.imageUrl.set('assets/test-image.jpg')
     fixture.detectChanges()
 
@@ -93,6 +97,7 @@ describe('CardComponent', () => {
   })
 
   it('should set the image alt text', () => {
+    hostComponent.showImage.set(true)
     hostComponent.imageUrl.set('assets/test-image.jpg')
     hostComponent.imageAlt.set('A test image')
     fixture.detectChanges()
@@ -104,7 +109,7 @@ describe('CardComponent', () => {
     expect(image.alt).toBe('A test image')
   })
 
-  it('should not render the image when imageUrl is not provided', () => {
+  it('should not render the image when showImage is false', () => {
     hostComponent.imageUrl.set('')
     fixture.detectChanges()
 
@@ -113,14 +118,14 @@ describe('CardComponent', () => {
     expect(image).toBeNull()
   })
 
-  it('should use an empty string for localImageUrl when imageUrl is undefined', () => {
+  it('should use placeholder for localImageUrl when imageUrl is undefined', () => {
     const cardDebugElement = fixture.debugElement.query(
       By.directive(CardComponent),
     )
 
     const cardComponent = cardDebugElement.componentInstance as CardComponent
 
-    expect(cardComponent.localImageUrl()).toBe('')
+    expect(cardComponent.localImageUrl()).toBe('/assets/images/image-placeholder.png')
   })
 
   it('should update localImageUrl when imageUrl changes', () => {
@@ -130,7 +135,7 @@ describe('CardComponent', () => {
 
     const cardComponent = cardDebugElement.componentInstance as CardComponent
 
-    expect(cardComponent.localImageUrl()).toBe('')
+    expect(cardComponent.localImageUrl()).toBe('/assets/images/image-placeholder.png')
 
     hostComponent.imageUrl.set('assets/test-image.jpg')
     fixture.detectChanges()
