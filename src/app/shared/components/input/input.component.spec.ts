@@ -29,8 +29,7 @@ class TemplateTestHostComponent {
   isDisabled = signal(false)
 }
 
-describe('InputComponent - Angular 21 Strategy', () => {
-
+describe('InputComponent', () => {
   describe('Isolated Unit Tests', () => {
     let component: InputComponent
     let fixture: ComponentFixture<InputComponent>
@@ -116,7 +115,7 @@ describe('InputComponent - Angular 21 Strategy', () => {
       fixture = TestBed.createComponent(TemplateTestHostComponent)
       hostComponent = fixture.componentInstance
 
-      // O primeiro detectChanges inicializa o ngModel isoladamente sem lógicas de branch (@if)
+      // This first detectChanges initializes the ngModel in isolation
       fixture.detectChanges()
     })
 
